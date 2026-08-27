@@ -230,17 +230,17 @@ section{ padding:110px 0; position:relative; }
 .work-count{ font-size:13px; color:var(--faint); flex:none; }
 
 .preview{
-  position:absolute; left:58%; top:50%; width:320px; z-index:5;
+  position:absolute; left:58%; top:50%; width:320px; max-width:calc(100vw - 56px); z-index:5;
   background:#0d0e10; border:1px solid var(--line); border-radius:12px;
   opacity:0; pointer-events:none;
   transform:translate(-50%,-50%) scale(0.94);
   transition:opacity .25s, transform .25s;
   box-shadow:0 30px 60px rgba(0,0,0,.6); overflow:hidden;
 }
-.work-row:hover .preview, .work-row:focus-within .preview{
+.work-row:hover .preview, .work-row:focus-within .preview, .work-row.active .preview{
   opacity:1; transform:translate(-50%,-50%) scale(1);
 }
-@media (max-width:760px){ .preview{ display:none; } }
+@media (max-width:520px){ .preview{ left:50%; } }
 .preview .bar{ height:30px; display:flex; align-items:center; gap:6px; padding:0 12px; background:#141517; border-bottom:1px solid var(--line); }
 .preview .tdot{ width:8px; height:8px; border-radius:50%; }
 .preview .body{ padding:22px 24px; font-family:var(--mono); font-size:14px; line-height:2; color:#B9BABD; }

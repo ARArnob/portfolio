@@ -40,13 +40,29 @@
   window.addEventListener('resize', updateProgress);
   updateProgress();
 
-  // dim non-hovered rows in the works list (preview show/hide is pure CSS)
+  // works list: hover shows a row's preview on desktop; tap toggles it on touch
   var listCol = document.getElementById('list-col');
   var rows = listCol.querySelectorAll('.work-row');
   rows.forEach(function (row) {
     row.addEventListener('mouseenter', function () { listCol.classList.add('hovering'); });
     row.addEventListener('focus', function () { listCol.classList.add('hovering'); });
+    row.addEventListener('click', function () {
+      var wasActive = row.classList.contains('active');
+      rows.forEach(function (r) { r.classList.remove('active'); });
+      if (!wasActive) {
+        row.classList.add('active');
+        listCol.classList.add('hovering');
+      } else {
+        listCol.classList.remove('hovering');
+      }
+    });
   });
   listCol.addEventListener('mouseleave', function () { listCol.classList.remove('hovering'); });
+  document.addEventListener('click', function (e) {
+    if (!listCol.contains(e.target)) {
+      rows.forEach(function (r) { r.classList.remove('active'); });
+      listCol.classList.remove('hovering');
+    }
+  });
 
 })();
